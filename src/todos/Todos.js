@@ -36,8 +36,13 @@ class Todos extends Component {
     this.setState({ todos });
   }
 
+  removeTodo = id => {
+    const todos = this.state.todos.filter(todo => todo.id !== id);
+    this.setState({ todos });
+  }
+
   toggleTodo = id => {
-    const todo = todos.find(todo => todo.id === id);
+    const todo = this.state.todos.find(todo => todo.id === id);
     todo.done = !todo.done;
     this.setState({ todos });
   }
@@ -47,11 +52,12 @@ class Todos extends Component {
       <div className="form-group">
         <InputBar onSubmit={this.addTodo} />
         <ul className="list-group">
-          {this.state.todos.map((todo, i) =>
+          {this.state.todos.map(todo =>
             <Todo
-              key={i}
+              key={todo.id}
               todo={todo}
               onToggleTodo={this.toggleTodo}
+              onRemoveTodo={this.removeTodo}
             />
           )}
         </ul>

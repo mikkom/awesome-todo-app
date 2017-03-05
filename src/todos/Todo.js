@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import './Todo.css';
 
-const Todo = ({ todo, onToggleTodo }) => (
+const Todo = ({ todo, onToggleTodo, onRemoveTodo }) => (
   <li className={classNames('list-group-item', { done: todo.done })}>
     {todo.name}
     <span className='pull-right btn-group'>
@@ -14,7 +14,7 @@ const Todo = ({ todo, onToggleTodo }) => (
       <button
         type="button"
         className="btn btn-danger btn-xs glyphicon glyphicon-remove"
-        onClick={() => {}}>
+        onClick={() => onRemoveTodo(todo.id)}>
       </button>
     </span>
   </li>
