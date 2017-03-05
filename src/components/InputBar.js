@@ -14,6 +14,16 @@ class InputBar extends Component {
     });
   }
 
+  handleKeyPress = e => {
+    if (e.charCode === 13) {
+      const value = this.state.value;
+      this.setState({
+        value: ''
+      });
+      this.props.onSubmit(value);
+    }
+  }
+
   render() {
     return (
       <div className="form-group">
@@ -21,6 +31,7 @@ class InputBar extends Component {
           className="form-control"
           value={this.state.value}
           onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
         />
       </div>
     );
