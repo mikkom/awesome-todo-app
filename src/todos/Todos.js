@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
+import InputBar from '../components/InputBar';
 
 const todos = [{
   name: 'Do the laundry',
@@ -15,7 +16,8 @@ const todos = [{
 class Todos extends Component {
   render() {
     return (
-      <div>
+      <div className="form-group">
+        <InputBar />
         <ul className="list-group">
           {todos.map((todo, i) => <Todo key={i} todo={todo} />)}
         </ul>
