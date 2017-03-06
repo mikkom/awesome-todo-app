@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
-import InputBar from '../components/InputBar';
-import * as api from './api';
+import InputBar from '../../components/InputBar';
+import * as api from '../api';
 
 class Todos extends Component {
   constructor(props) {
