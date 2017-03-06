@@ -26,18 +26,11 @@ class Todos extends Component {
   }
 
   removeTodo = id => {
-    /*
-    const todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({ todos });
-    */
+    api.deleteTodo(id).then(this.fetchTodos);
   }
 
   toggleTodo = id => {
-    /*
-    const todo = this.state.todos.find(todo => todo.id === id);
-    todo.done = !todo.done;
-    this.setState({ todos });
-    */
+    api.toggleTodo(id).then(this.fetchTodos);
   }
 
   render() {
