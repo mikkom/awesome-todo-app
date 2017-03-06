@@ -12,19 +12,17 @@ class Todos extends Component {
   }
 
   componentDidMount() {
-    api.getTodos().then(todos => this.setState({ todos }));
+    this.fetchTodos();
   }
 
+  fetchTodos = () => api.getTodos().then(todos => this.setState({ todos }));
+
   addTodo = name => {
-    /*
     const todo = {
-      id: latestId++,
       name,
       done: false
     };
-    const todos = [...this.state.todos, todo];
-    this.setState({ todos });
-    */
+    api.addTodo(todo).then(this.fetchTodos);
   }
 
   removeTodo = id => {
