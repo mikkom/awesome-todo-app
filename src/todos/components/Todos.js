@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Todo from './Todo';
 import InputBar from '../../components/InputBar';
 import * as api from '../api';
@@ -34,6 +35,7 @@ class Todos extends Component {
   }
 
   render() {
+    console.log('this.props.todos', this.props.todos);
     return (
       <div className="form-group">
         <InputBar onSubmit={this.addTodo} />
@@ -52,4 +54,8 @@ class Todos extends Component {
   }
 }
 
-export default Todos;
+const mapStateToProps = state => ({
+  todos: Object.keys(state.todos).map(id => state.todos[id])
+});
+
+export default connect(mapStateToProps)(Todos);

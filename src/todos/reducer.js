@@ -14,6 +14,7 @@ export default (state = {}, action) => {
     }
     case t.REMOVE_TODO: {
       const id = action.payload;
+      // eslint-disable-next-line no-unused-vars
       const { [id]: removedTodo, ...rest } = state;
       return rest;
     }
