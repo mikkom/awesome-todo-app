@@ -7,11 +7,27 @@ const todo1 = {
   done: true
 };
 
+const todo2 = {
+  id: '2',
+  name: 'Have some lunch',
+  done: false
+};
+
 test('adds todo to empty list', () => {
   const action = a.addTodo(todo1);
   const state = reducer(undefined, action);
   expect(Object.keys(state).length).toBe(1);
   expect(state).toEqual({
     [todo1.id]: todo1
+  })
+});
+
+test('adds todo to non-empty list', () => {
+  let state = reducer(undefined, a.addTodo(todo1));
+  state = reducer(state, a.addTodo(todo2));
+  expect(Object.keys(state).length).toBe(2);
+  expect(state).toEqual({
+    [todo1.id]: todo1,
+    [todo2.id]: todo2
   })
 });
