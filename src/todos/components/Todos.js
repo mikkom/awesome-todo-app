@@ -4,18 +4,14 @@ import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 import Todo from './Todo';
 import InputBar from '../../components/InputBar';
-// import * as api from '../api';
+import * as api from '../api';
 import { getTodos } from '../selectors';
-import { addTodo, toggleTodo, removeTodo } from '../actions';
+import { addTodo, toggleTodo, removeTodo, setTodos } from '../actions';
 
 class Todos extends Component {
-  /*
   componentDidMount() {
-    this.fetchTodos();
+    api.getTodos().then(this.props.setTodos);
   }
-
-  fetchTodos = () => api.getTodos().then(todos => this.setState({ todos }));
-  */
 
   addTodo = name => {
     const todo = {
@@ -50,6 +46,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addTodo, toggleTodo, removeTodo }, dispatch);
+  bindActionCreators({
+    addTodo,
+    toggleTodo,
+    removeTodo,
+    setTodos
+  }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
