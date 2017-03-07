@@ -1,47 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'node-uuid';
 import Todo from './Todo';
 import InputBar from '../../components/InputBar';
-import * as api from '../api';
+// import * as api from '../api';
 import { getTodos } from '../selectors';
+import * as a from '../actions';
 
 class Todos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: []
-    }
-  }
-
+  /*
   componentDidMount() {
     this.fetchTodos();
   }
 
   fetchTodos = () => api.getTodos().then(todos => this.setState({ todos }));
+  */
 
   addTodo = name => {
     const todo = {
+      id: uuid.v4(),
       name,
       done: false
     };
-    api.addTodo(todo).then(this.fetchTodos);
+    this.props.dispatch(a.addTodo(todo));
   }
 
   removeTodo = id => {
-    api.deleteTodo(id).then(this.fetchTodos);
+    this.props.dispatch(a.removeTodo(id));
   }
 
   toggleTodo = id => {
-    api.toggleTodo(id).then(this.fetchTodos);
+    this.props.dispatch(a.toggleTodo(id));
   }
 
   render() {
-    console.log('this.props.todos', this.props.todos);
     return (
       <div className="form-group">
         <InputBar onSubmit={this.addTodo} />
         <ul className="list-group">
-          {this.state.todos.map(todo =>
+          {this.props.todos.map(todo =>
             <Todo
               key={todo.id}
               todo={todo}
