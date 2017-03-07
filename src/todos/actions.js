@@ -14,3 +14,8 @@ export const removeTodo = id => ({
   type: t.REMOVE_TODO,
   payload: id
 });
+
+export const setTodos = todos => ({
+  type: t.SET_TODOS,
+  payload: todos
+});

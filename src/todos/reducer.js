@@ -18,6 +18,13 @@ export default (state = {}, action) => {
       const { [id]: removedTodo, ...rest } = state;
       return rest;
     }
+    case t.SET_TODOS: {
+      const todos = action.payload;
+      return todos.reduce((acc, todo) => ({
+        ...acc,
+        [todo.id]: todo
+      }), {});
+    }
     default:
       return state;
   }

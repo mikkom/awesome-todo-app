@@ -56,3 +56,11 @@ test('removes todo from two-element list', () => {
     [todo2.id]: todo2
   })
 });
+
+test('sets list of todos', () => {
+  let state = reducer(undefined, a.setTodos([todo1, todo2]));
+  expect(state).toEqual({
+    [todo1.id]: todo1,
+    [todo2.id]: todo2
+  })
+});
