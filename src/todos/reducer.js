@@ -2,20 +2,15 @@ import * as t from './actionTypes';
 
 export default (state = {}, action) => {
   switch(action.type) {
-    case t.ADD_TODO: {
+    case t.ADD_TODO:
+    case t.TOGGLE_TODO: {
       const todo = action.payload;
       return { ...state, [todo.id]: todo };
     }
-    case t.TOGGLE_TODO: {
-      const id = action.payload;
-      const todo = state[id];
-      const toggledTodo = { ...todo, done: !todo.done };
-      return { ...state, [todo.id]: toggledTodo };
-    }
     case t.REMOVE_TODO: {
-      const id = action.payload;
+      const todo = action.payload;
       // eslint-disable-next-line no-unused-vars
-      const { [id]: removedTodo, ...rest } = state;
+      const { [todo.id]: removedTodo, ...rest } = state;
       return rest;
     }
     case t.SET_TODOS: {

@@ -10,8 +10,18 @@ export const addTodo = todo => ({
   payload: todo
 });
 
+export const startToggle = id => ({
+  type: t.START_TOGGLE,
+  payload: id
+});
+
 export const toggleTodo = id => ({
   type: t.TOGGLE_TODO,
+  payload: id
+});
+
+export const startRemove = id => ({
+  type: t.START_REMOVE,
   payload: id
 });
 

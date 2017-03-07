@@ -6,7 +6,12 @@ import Todo from './Todo';
 import InputBar from '../../components/InputBar';
 import * as api from '../api';
 import { getTodos } from '../selectors';
-import { startAdd, toggleTodo, removeTodo, setTodos } from '../actions';
+import {
+  startAdd,
+  startToggle,
+  startRemove,
+  setTodos
+} from '../actions';
 
 class Todos extends Component {
   componentDidMount() {
@@ -31,8 +36,8 @@ class Todos extends Component {
             <Todo
               key={todo.id}
               todo={todo}
-              onToggleTodo={this.props.toggleTodo}
-              onRemoveTodo={this.props.removeTodo}
+              onToggleTodo={this.props.startToggle}
+              onRemoveTodo={this.props.startRemove}
             />
           )}
         </ul>
@@ -48,8 +53,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     startAdd,
-    toggleTodo,
-    removeTodo,
+    startToggle,
+    startRemove,
     setTodos
   }, dispatch);
 
