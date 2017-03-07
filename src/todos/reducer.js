@@ -6,8 +6,17 @@ export default (state = {}, action) => {
       const todo = action.payload;
       return { ...state, [todo.id]: todo };
     }
-    case t.TOGGLE_TODO:
-    case t.REMOVE_TODO:
+    case t.TOGGLE_TODO: {
+      const id = action.payload;
+      const todo = state[id];
+      const toggledTodo = { ...todo, done: !todo.done };
+      return { ...state, [todo.id]: toggledTodo };
+    }
+    case t.REMOVE_TODO: {
+      const id = action.payload;
+      const { [id]: removedTodo, ...rest } = state;
+      return rest;
+    }
     default:
       return state;
   }
