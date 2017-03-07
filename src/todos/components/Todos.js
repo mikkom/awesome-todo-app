@@ -6,7 +6,7 @@ import Todo from './Todo';
 import InputBar from '../../components/InputBar';
 import * as api from '../api';
 import { getTodos } from '../selectors';
-import { addTodo, toggleTodo, removeTodo, setTodos } from '../actions';
+import { startAdd, toggleTodo, removeTodo, setTodos } from '../actions';
 
 class Todos extends Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class Todos extends Component {
       name,
       done: false
     };
-    this.props.addTodo(todo);
+    this.props.startAdd(todo);
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    addTodo,
+    startAdd,
     toggleTodo,
     removeTodo,
     setTodos
