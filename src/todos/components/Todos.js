@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 import Todo from './Todo';
 import InputBar from '../../components/InputBar';
 // import * as api from '../api';
 import { getTodos } from '../selectors';
-import * as a from '../actions';
+import { addTodo, toggleTodo, removeTodo } from '../actions';
 
 class Todos extends Component {
   /*
@@ -22,15 +23,7 @@ class Todos extends Component {
       name,
       done: false
     };
-    this.props.dispatch(a.addTodo(todo));
-  }
-
-  removeTodo = id => {
-    this.props.dispatch(a.removeTodo(id));
-  }
-
-  toggleTodo = id => {
-    this.props.dispatch(a.toggleTodo(id));
+    this.props.addTodo(todo);
   }
 
   render() {
@@ -42,8 +35,8 @@ class Todos extends Component {
             <Todo
               key={todo.id}
               todo={todo}
-              onToggleTodo={this.toggleTodo}
-              onRemoveTodo={this.removeTodo}
+              onToggleTodo={this.props.toggleTodo}
+              onRemoveTodo={this.props.removeTodo}
             />
           )}
         </ul>
@@ -56,4 +49,7 @@ const mapStateToProps = state => ({
   todos: getTodos(state)
 });
 
-export default connect(mapStateToProps)(Todos);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ addTodo, toggleTodo, removeTodo }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);
