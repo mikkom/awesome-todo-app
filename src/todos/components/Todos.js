@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Todo from './Todo';
 import InputBar from '../../components/InputBar';
 import * as api from '../api';
+import { getTodos } from '../selectors';
 
 class Todos extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Todos extends Component {
 }
 
 const mapStateToProps = state => ({
-  todos: Object.keys(state.todos).map(id => state.todos[id])
+  todos: getTodos(state)
 });
 
 export default connect(mapStateToProps)(Todos);
