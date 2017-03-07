@@ -1,5 +1,10 @@
 import * as t from './actionTypes';
 
+export const startAdd = todo => ({
+  type: t.START_ADD,
+  payload: todo
+});
+
 export const addTodo = todo => ({
   type: t.ADD_TODO,
   payload: todo
