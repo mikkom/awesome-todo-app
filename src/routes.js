@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './App';
-import Welcome from './Welcome';
+import Welcome from './authentication/components/Welcome';
 import Todos from './todos/components/Todos';
 
 export default (
