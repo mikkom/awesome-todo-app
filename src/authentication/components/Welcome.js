@@ -10,12 +10,9 @@ export class Welcome extends Component {
     return (
       <div>
         <p>Welcome to Todo App</p>
-        {
-          authenticated &&
-          <Link to='/todos' className="btn btn btn-info">
-            Go to todo-list
-          </Link>
-        }
+        <Link to='/todos' className="btn btn btn-info">
+          Go to todo-list
+        </Link>
         {
           !authenticated &&
           <button
