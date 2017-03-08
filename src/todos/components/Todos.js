@@ -13,7 +13,7 @@ import {
   setTodos
 } from '../actions';
 
-class Todos extends Component {
+export class Todos extends Component {
   componentDidMount() {
     api.getTodos().then(this.props.setTodos);
   }
